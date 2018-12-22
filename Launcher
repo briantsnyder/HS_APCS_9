@@ -1,0 +1,32 @@
+/**
+ * Design a code that calculates the distance of projectiles based on launch
+ * and launch velocities.
+ *
+ * Brian Snyder
+ * 12/12/17
+ */
+public class Launcher {
+    // declare private instant variables
+    private double myDegrees;
+    private int myVelocity;
+    Launcher(double degrees, int velocity) { // initialize prvate instant variables with constructor
+        myDegrees = degrees;
+        myVelocity = velocity;
+    }
+    // getter method for degrees
+    public double getDegrees() {
+        return myDegrees;
+    }
+    // getter method for velocities
+    public int getVelocities() {
+        return myVelocity;
+    }
+    // setter method that converts the degrees to radians
+    public void convertToRadians(double degrees) {
+        myDegrees = Math.toRadians(degrees);
+    }
+    // setter method that returns the distance of a projectile based off projectile equations
+    public double calcDistance(int velocity) {
+        return ((Math.pow(velocity,2) * Math.sin(2*myDegrees)) / 9.8);
+    }
+}
