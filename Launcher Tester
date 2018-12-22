@@ -1,0 +1,52 @@
+/**
+ * Design a code that calculates the distance of projectiles based on launch
+ * and launch velocities.
+ *
+ * Brian Snyder
+ * 12/12/17
+ */
+import java.util.ArrayList;
+public class LauncherTester {
+   public static void main(String[] args) {
+       // initializes array of degress and velocities
+       int [] velocities = {20, 25, 30, 35, 40, 45, 50};
+       double [] degrees = {25, 30, 35, 40, 45, 50};
+       
+       // initializes double array
+       double [][] distances = new double [7][6]; 
+       
+       // initializes # of rows and colummns
+       int numRows = distances.length;
+       int numCols = distances[0].length;
+       
+       // displays header
+       System.out.printf("%60s%n", "Projectile Distance (meters)");
+       System.out.printf("%7s", "m/s");
+       
+       // initializes array list
+       ArrayList<Launcher> launchers = new ArrayList<Launcher>();
+       
+       for (int i = 0; i < numCols; i++) {
+           // displays header by using for loop to print each degree
+           System.out.printf("%12s", (int)degrees[i] + " deg");
+           for (int j = 0; j < numRows; j++) {
+               // adds an object to the array list based off the degree and velocity array
+               launchers.add(new Launcher(degrees[i], velocities[j]));
+           }
+           launchers.get(i).convertToRadians(degrees[i]); // converts the degrees to radians
+       }
+       
+       // displays boarder separating header from information
+       System.out.print("\n====================================================================================");
+       
+       for (int i = 0; i < numRows; i++) {
+           // displays the velocities in a vertical column
+           System.out.printf("%n %6s", velocities[i]);
+           for (int j = 0; j < numCols; j++) {
+               // calculates the distance for each angle and velocity and saves it to double array
+               distances[i][j] = launchers.get(j).calcDistance(velocities[i]);
+               System.out.printf("%12.3f",distances[i][j]); // prints double array
+           }
+       }
+   }
+}
